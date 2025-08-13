@@ -14,5 +14,11 @@ public enum ResponseCode {
 
     }
 
+    public int getCode() {
+        return code;
+    }
 
+    public String getDescription() {
+        return description;
+    }
 }

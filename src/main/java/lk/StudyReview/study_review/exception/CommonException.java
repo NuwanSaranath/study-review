@@ -22,4 +22,8 @@ public class CommonException extends RuntimeException{
         super(description);
         this.responseCode = ResponseCode.INVALID_REQUEST;
     }
+
+    public ResponseCode getResponseCode() {
+        return responseCode;
+    }
 }
