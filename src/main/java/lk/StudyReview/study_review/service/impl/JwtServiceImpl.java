@@ -1,22 +1,21 @@
-package lk.StudyReview.study_review.security;
+package lk.StudyReview.study_review.service.impl;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
-import lk.StudyReview.study_review.utils.enums.Role;
+import lk.StudyReview.study_review.service.JwtService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.*;
 import java.util.stream.Collectors;
-@Component
-public class JwtTokenUtil {
+@Service
+public class JwtServiceImpl implements JwtService {
     @Value("${security.jwt.expiration-ms}")
     private long jwtExpirationTimeInMs;
     @Value("${security.jwt.base64-secret}")
@@ -28,30 +27,16 @@ public class JwtTokenUtil {
         byte[] keyBytes = Decoders.BASE64.decode(Objects.requireNonNull(secret, "Secret must be set in Base64"));
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
-//    public String generateToken(UserDetails user){
-//        Map<String, Object> claims = new HashMap<>();
-//        claims.put("ROLES", getRoles(user));
-//        return Jwts.builder()
-//                .setClaims(claims)
-//                .setSubject(user.getUsername())
-//                .setIssuedAt(new Date())
-//                .setExpiration(new Date((new Date()).getTime() + jwtExpirationTimeInMs))
-//                .signWith(key)
-//                .compact();
-//    }
-    public String generateToken(Map<String, Object> extraClaims,UserDetails userDetails){
-        return Jwts.builder()
-                .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 60 * 10) ) //10h
-                .signWith(key,SignatureAlgorithm.HS256)
-                .compact();
-    }
-    public String createToken(UserDetails username, Role role){
+    public String generateToken(UserDetails user){
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", role);
-        return generateToken(claims, username);
+        claims.put("ROLES", getRoles(user));
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(user.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationTimeInMs))
+                .signWith(key)
+                .compact();
     }
 
     public String getUserNameFromToken(String token){
@@ -68,8 +53,8 @@ public class JwtTokenUtil {
         return expiration.before(new Date());
     }
     public Claims getBodyFromToken(String token){
-         return Jwts.parserBuilder()
-                 .setSigningKey(key)
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();

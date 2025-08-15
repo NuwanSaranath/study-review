@@ -7,7 +7,6 @@ import lk.StudyReview.study_review.exception.CommonException;
 //import lk.StudyReview.study_review.model.common.Auth.CustomUserDetails;
 import lk.StudyReview.study_review.model.common.User;
 import lk.StudyReview.study_review.repository.UserRepository;
-import lk.StudyReview.study_review.security.JwtTokenUtil;
 import lk.StudyReview.study_review.service.AuthService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ import java.util.Optional;
 public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-    private final JwtTokenUtil jwtTokenUtil;
+    private final JwtServiceImpl jwtService;
     @Override
     public void signUp(UserDetailsDto userDetailsDto) {
         Optional<User> userOptional = userRepository.findByUserName(userDetailsDto.getUserName().trim());
@@ -47,17 +46,15 @@ public class AuthServiceImpl implements AuthService {
         Optional<User> userOptional = userRepository.findByUserName(authRequestDto.getUserName().trim().toUpperCase());
         if(userOptional.isPresent()){
             User user = userOptional.get();
-//            CustomUserDetails customUserDetails = new CustomUserDetails(user);
             if(!passwordEncoder.matches(authRequestDto.getPassword(),user.getPassword())){
                 log.error("Invalid user name or password.");
                 throw new CommonException(ResponseCode.INVALID_USERNAME_OR_PASSWORD);
             }
-//            String jwt = jwtTokenUtil.generateToken(customUserDetails);
+            String jwt = jwtService.generateToken(user);
             TokenResponse tokenResponse = new TokenResponse();
-            var jwt = jwtTokenUtil.createToken(user, user.getRole());
             tokenResponse.setTokenType("Bearer");
             tokenResponse.setToken(jwt);
-            tokenResponse.setExpiresIn(jwtTokenUtil.getBodyFromToken(jwt).getExpiration());
+            tokenResponse.setExpiresIn(jwtService.getBodyFromToken(jwt).getExpiration());
             return tokenResponse;
         }
         log.error("User is not registered.");
