@@ -1,0 +1,23 @@
+package lk.StudyReview.study_review.model;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "lesson_details")
+public class LessonDetails extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "title")
+    private String title;
+    @ManyToOne
+    @JoinColumn(name = "class_id",nullable = false,referencedColumnName = "id")
+    private ClassDetails classDetails;
+
+}

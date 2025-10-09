@@ -1,4 +1,4 @@
-package lk.StudyReview.study_review.model.common;
+package lk.StudyReview.study_review.model;
 
 import jakarta.persistence.Column;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,5 +11,9 @@ public class BaseEntity {
     private Date createdTimestamp;
     @Column(name = "updated_timestamp")
     private Date updatedTimestamp;
+    @Column(name = "created_by")
+    private String createdBy;
+    @Column(name = "updated_by")
+    private String updatedBy;
 
 }
