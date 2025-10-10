@@ -18,7 +18,10 @@ public class ClassDetails extends BaseEntity {
     private String className;
     @Column(name = "description")
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "teacher")
+    private User teacher;
     @Column(name = "dp")
-    private String dp;
+    private byte[] dp;
 
 }
