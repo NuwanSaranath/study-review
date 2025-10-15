@@ -4,13 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
 @Table(name = "lesson_document")
-public class LessonDocument extends BaseEntity {
+public class TopicDocument extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +17,6 @@ public class LessonDocument extends BaseEntity {
     private Document document;
     @ManyToOne
     @JoinColumn(name = "lesson_id",nullable = false,referencedColumnName = "id")
-    private LessonDetails lessonDetails;
+    private Topic topic;
 
 }

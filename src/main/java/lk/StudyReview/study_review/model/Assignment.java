@@ -25,7 +25,7 @@ public class Assignment extends BaseEntity {
     private Date endTime;
     @ManyToOne
     @JoinColumn(name = "lesson_id",nullable = false,referencedColumnName = "id")
-    private LessonDetails lessonDetails;
+    private Topic topic;
     @Column(name = "is_mcq")
     private Boolean isMcq;
 
