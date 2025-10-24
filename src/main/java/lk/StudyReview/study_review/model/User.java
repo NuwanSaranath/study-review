@@ -1,4 +1,4 @@
-package lk.StudyReview.study_review.model.common;
+package lk.StudyReview.study_review.model;
 
 import jakarta.persistence.*;
 import lk.StudyReview.study_review.utils.enums.Role;
