@@ -5,7 +5,7 @@ import lk.StudyReview.study_review.dto.common.Auth.TokenResponse;
 import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.exception.CommonException;
 //import lk.StudyReview.study_review.model.common.Auth.CustomUserDetails;
-import lk.StudyReview.study_review.model.common.User;
+import lk.StudyReview.study_review.model.User;
 import lk.StudyReview.study_review.repository.UserRepository;
 import lk.StudyReview.study_review.service.AuthService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;

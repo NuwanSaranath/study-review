@@ -8,7 +8,10 @@ public enum ResponseCode {
     USER_ALREADY_REGISTERED(1001, "User already registered"),
     INVALID_USERNAME_OR_PASSWORD(1002, "Invalid user name or password."),
     USER_DOES_NOT_REGISTERED(1003, "User is not registered."),
-    SUCCESS(1004, "Success.");
+    SUCCESS(1004, "Success."),
+    CLASS_DOES_NOT_EXIST(1005, "Class does not exist."),
+
+    ;
 
     private final int code;
     private final String description;
