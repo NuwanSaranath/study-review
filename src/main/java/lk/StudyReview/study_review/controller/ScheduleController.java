@@ -25,30 +25,4 @@ public class ScheduleController {
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS, scheduleService.getAllSchedules(page,size,studentId)));
     }
 
-    // Get schedule by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<APIResponse<ScheduleDto>> getScheduleById(@PathVariable Long id) {
-        return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS, scheduleService.getScheduleById(id)));
-    }
-
-    // Create new schedule
-    @PostMapping
-    public ResponseEntity<APIResponse<Null>> createSchedule(@RequestBody ScheduleDto scheduleDto) {
-        scheduleService.createSchedule(scheduleDto);
-        return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
-    }
-
-    // Update schedule
-    @PutMapping("/{id}")
-    public ResponseEntity<APIResponse<Null>> updateSchedule(@PathVariable Long id, @RequestBody ScheduleDto scheduleDto) {
-        scheduleService.updateSchedule(id, scheduleDto);
-        return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
-    }
-
-    // Delete schedule
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSchedule(@PathVariable Long id) {
-        scheduleService.deleteSchedule(id);
-        return ResponseEntity.noContent().build();
-    }
 }
