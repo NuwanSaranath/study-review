@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Blob;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,5 +24,8 @@ public class ClassDetails extends BaseEntity {
     private User teacher;
     @Column(name = "dp")
     private byte[] dp;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "class_student_details")
+    private List<User> students;
 
 }

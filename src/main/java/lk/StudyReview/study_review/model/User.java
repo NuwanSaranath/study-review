@@ -34,6 +34,9 @@ public class User implements UserDetails {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "class_student_details")
+    private List<ClassDetails> classDetailsList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
