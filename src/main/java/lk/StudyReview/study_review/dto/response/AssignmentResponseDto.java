@@ -1,6 +1,7 @@
-package lk.StudyReview.study_review.dto.common;
+package lk.StudyReview.study_review.dto.response;
 
-import lk.StudyReview.study_review.model.Mcq;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +9,8 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
+@Builder
 public class AssignmentResponseDto {
     private Long id;
     private String assignmentName;

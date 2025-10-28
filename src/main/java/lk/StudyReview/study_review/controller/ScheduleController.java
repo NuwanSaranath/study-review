@@ -1,18 +1,13 @@
 package lk.StudyReview.study_review.controller;
 
-import jakarta.validation.constraints.Null;
 import lk.StudyReview.study_review.dto.common.APIResponse;
-import lk.StudyReview.study_review.dto.common.ScheduleDto;
 import lk.StudyReview.study_review.dto.response.PageableScheduleResponse;
 import lk.StudyReview.study_review.service.ScheduleService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

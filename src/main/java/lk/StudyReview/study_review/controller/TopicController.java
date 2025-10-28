@@ -1,9 +1,9 @@
 package lk.StudyReview.study_review.controller;
 
 import jakarta.validation.Valid;
-import lk.StudyReview.study_review.dto.common.TopicDetailsDto;
+import lk.StudyReview.study_review.dto.request.TopicDetailsDto;
 import lk.StudyReview.study_review.dto.common.APIResponse;
-import lk.StudyReview.study_review.dto.common.TopicResponseDto;
+import lk.StudyReview.study_review.dto.response.TopicResponseDto;
 import lk.StudyReview.study_review.service.TopicService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;

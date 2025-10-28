@@ -2,15 +2,14 @@ package lk.StudyReview.study_review.service.impl;
 
 import jakarta.transaction.Transactional;
 import lk.StudyReview.study_review.dto.TopicDetailsDto;
-import lk.StudyReview.study_review.dto.common.DocumentDto;
-import lk.StudyReview.study_review.dto.common.TopicResponseDto;
+import lk.StudyReview.study_review.dto.response.DocumentDto;
+import lk.StudyReview.study_review.dto.response.TopicResponseDto;
 import lk.StudyReview.study_review.exception.CommonException;
 import lk.StudyReview.study_review.model.*;
 import lk.StudyReview.study_review.repository.*;
 import lk.StudyReview.study_review.service.CommonService;
 import lk.StudyReview.study_review.service.TopicService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
-import lk.StudyReview.study_review.utils.enums.ReviewStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

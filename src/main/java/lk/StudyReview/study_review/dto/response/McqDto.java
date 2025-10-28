@@ -1,4 +1,4 @@
-package lk.StudyReview.study_review.dto.common;
+package lk.StudyReview.study_review.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +9,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class McqDetailsDto {
+public class McqDto {
+
+    private Long id;
     private Long assignmentId;
     private String question;
-    private List<String> options;
-    private String correctAnswer;
+    private List<McqOptionDto> options;
+    private Long correctAnswerId;
 }

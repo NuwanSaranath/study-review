@@ -1,4 +1,4 @@
-package lk.StudyReview.study_review.dto.common;
+package lk.StudyReview.study_review.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
