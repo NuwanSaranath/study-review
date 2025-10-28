@@ -1,6 +1,6 @@
 package lk.StudyReview.study_review.service;
 
-import lk.StudyReview.study_review.dto.TopicDetailsDto;
+import lk.StudyReview.study_review.dto.common.TopicDetailsDto;
 import lk.StudyReview.study_review.dto.common.TopicResponseDto;
 import lk.StudyReview.study_review.model.Topic;
 

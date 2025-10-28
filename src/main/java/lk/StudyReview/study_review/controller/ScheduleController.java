@@ -9,6 +9,7 @@ import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('TEACHER','STUDENT')")
     public ResponseEntity<APIResponse<PageableScheduleResponse>> getAllSchedules(@RequestParam("page") Integer page, @RequestParam("size") Integer size, @RequestParam("studentId") Long studentId) {
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS, scheduleService.getAllSchedules(page,size,studentId)));
     }

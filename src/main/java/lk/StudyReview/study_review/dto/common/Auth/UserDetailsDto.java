@@ -28,11 +28,10 @@ public class UserDetailsDto {
     @Pattern(regexp = "^[A-Za-z]+(?: [A-Za-z]+)*$",message = "Use only English letters with single spaces between names.")
     private String lastName;
 
-    @JsonProperty(value = "password", access = JsonProperty.Access.WRITE_ONLY) // never serialize back
+    @JsonProperty("password")
     @NotBlank(message = "Password is required.")
     @Size(min = 5, max = 64, message = "Password must be 8–64 characters.")
-    @Pattern(
-            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,64}$",
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,64}$",
             message = "Password must have upper, lower, digit and special character.")
     private String password;
 
