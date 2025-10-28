@@ -1,7 +1,7 @@
 package lk.StudyReview.study_review.controller;
 
-import lk.StudyReview.study_review.dto.common.APIResponse;
-import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
+import lk.StudyReview.study_review.dto.request.APIResponse;
+import lk.StudyReview.study_review.dto.request.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.service.UserService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;

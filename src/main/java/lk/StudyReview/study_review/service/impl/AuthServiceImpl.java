@@ -1,8 +1,8 @@
 package lk.StudyReview.study_review.service.impl;
 
-import lk.StudyReview.study_review.dto.common.Auth.AuthRequestDto;
-import lk.StudyReview.study_review.dto.common.Auth.TokenResponse;
-import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
+import lk.StudyReview.study_review.dto.request.Auth.AuthRequestDto;
+import lk.StudyReview.study_review.dto.request.Auth.TokenResponse;
+import lk.StudyReview.study_review.dto.request.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.exception.CommonException;
 //import lk.StudyReview.study_review.model.common.Auth.CustomUserDetails;
 import lk.StudyReview.study_review.model.User;
