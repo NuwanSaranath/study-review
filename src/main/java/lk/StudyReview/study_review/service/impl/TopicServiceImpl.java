@@ -1,23 +1,21 @@
 package lk.StudyReview.study_review.service.impl;
 
+import jakarta.transaction.Transactional;
 import lk.StudyReview.study_review.dto.TopicDetailsDto;
 import lk.StudyReview.study_review.dto.common.DocumentDto;
 import lk.StudyReview.study_review.dto.common.TopicResponseDto;
 import lk.StudyReview.study_review.exception.CommonException;
 import lk.StudyReview.study_review.model.*;
-import lk.StudyReview.study_review.repository.AssignmentRepository;
-import lk.StudyReview.study_review.repository.ClassDetailsRepository;
-import lk.StudyReview.study_review.repository.TopicRepository;
-import lk.StudyReview.study_review.repository.TopicDocumentRepository;
+import lk.StudyReview.study_review.repository.*;
+import lk.StudyReview.study_review.service.CommonService;
 import lk.StudyReview.study_review.service.TopicService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
+import lk.StudyReview.study_review.utils.enums.ReviewStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -27,8 +25,12 @@ public class TopicServiceImpl implements TopicService {
     private final TopicDocumentRepository topicDocumentRepository;
     private final ClassDetailsRepository classDetailsRepository;
     private final AssignmentRepository assignmentRepository;
+    private final UserRepository userRepository;
+    private final CommonService commonService;
+    private final ScheduleRepository scheduleRepository;
 
     @Override
+    @Transactional
     public void saveTopic(TopicDetailsDto topicDetailsDto) {
         Optional<ClassDetails> classDetailsOptional = classDetailsRepository.findById(topicDetailsDto.getClassId());
         if(classDetailsOptional.isEmpty()){
@@ -38,7 +40,8 @@ public class TopicServiceImpl implements TopicService {
         Topic topic = new Topic();
         topic.setTitle(topicDetailsDto.getTitle());
         topic.setClassDetails(classDetailsOptional.get());
-        topicRepository.save(topic);
+        Topic savedTopic = topicRepository.save(topic);
+        commonService.scheduleTheTopic(savedTopic);
     }
 
     @Override
