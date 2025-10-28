@@ -1,6 +1,6 @@
 package lk.StudyReview.study_review.service.impl;
 
-import lk.StudyReview.study_review.dto.common.ClassDetailsDto;
+import lk.StudyReview.study_review.dto.request.ClassDetailsDto;
 import lk.StudyReview.study_review.exception.CommonException;
 import lk.StudyReview.study_review.model.ClassDetails;
 import lk.StudyReview.study_review.model.User;

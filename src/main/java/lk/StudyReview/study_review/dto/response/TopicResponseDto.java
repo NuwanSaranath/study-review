@@ -1,20 +1,21 @@
-package lk.StudyReview.study_review.dto;
+package lk.StudyReview.study_review.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TopicDetailsDto {
-    @JsonProperty("id")
+@Builder
+public class TopicResponseDto {
     private Long id;
-    @JsonProperty("title")
     private String title;
-    @JsonProperty("class_id")
     private Long classId;
-    @JsonProperty("class_name")
     private String className;
+    private Long numberOfAssignment;
+    private List<DocumentDto> documents;
+
 }

@@ -1,10 +1,7 @@
-package lk.StudyReview.study_review.dto.common;
+package lk.StudyReview.study_review.dto.response;
 
-import lk.StudyReview.study_review.dto.TopicDetailsDto;
 import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
-import lk.StudyReview.study_review.model.Schedule;
-import lk.StudyReview.study_review.model.Topic;
-import lk.StudyReview.study_review.model.User;
+import lk.StudyReview.study_review.dto.request.TopicDetailsDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

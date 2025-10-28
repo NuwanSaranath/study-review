@@ -1,6 +1,10 @@
 package lk.StudyReview.study_review.service.impl;
 
-import lk.StudyReview.study_review.dto.common.*;
+import lk.StudyReview.study_review.dto.request.AssignmentDetailsDto;
+import lk.StudyReview.study_review.dto.response.AssignmentResponseDto;
+import lk.StudyReview.study_review.dto.response.DocumentDto;
+import lk.StudyReview.study_review.dto.response.McqDto;
+import lk.StudyReview.study_review.dto.response.McqOptionDto;
 import lk.StudyReview.study_review.exception.CommonException;
 import lk.StudyReview.study_review.model.*;
 import lk.StudyReview.study_review.repository.*;
@@ -52,15 +56,17 @@ public class AssignmentServiceImpl implements AssignmentService {
             throw new CommonException(ResponseCode.INVALID_REQUEST);
         }
         Assignment assignment = assignmentOptional.get();
-        AssignmentResponseDto assignmentResponseDto = new AssignmentResponseDto();
-        assignmentResponseDto.setId(assignment.getId());
-        assignmentResponseDto.setAssignmentName(assignment.getAssignmentName());
-        assignmentResponseDto.setTimeDuration(assignment.getTime_duration());
-        assignmentResponseDto.setStartTime(assignment.getStartTime());
-        assignmentResponseDto.setEndTime(assignment.getEndTime());
-        assignmentResponseDto.setIsMcq(assignment.getIsMcq());
-        assignmentResponseDto.setTopicId(assignment.getTopic().getId());
-        assignmentResponseDto.setTopicTitle(assignment.getTopic().getTitle());
+        AssignmentResponseDto assignmentResponseDto = AssignmentResponseDto.builder()
+                .id(assignment.getId())
+                .assignmentName(assignment.getAssignmentName())
+                .timeDuration(assignment.getTime_duration())
+                .startTime(assignment.getStartTime())
+                .endTime(assignment.getEndTime())
+                .isMcq(assignment.getIsMcq())
+                .topicId(assignment.getTopic() != null ? assignment.getTopic().getId() : null)
+                .topicTitle(assignment.getTopic() != null ? assignment.getTopic().getTitle() : null)
+                .build();
+
         List<AssignmentDocument> documents = assignmentDocumentRepository.findAssignmentDocumentByAssignment(assignment);
         List<DocumentDto> documentDtos = new ArrayList<>();
         documents.forEach(ad -> {
@@ -100,16 +106,16 @@ public class AssignmentServiceImpl implements AssignmentService {
         topicList.forEach(topic -> {
             List<Assignment> assignments = assignmentRepository.findAllByTopic(topic);
             assignments.forEach(a -> {
-                AssignmentResponseDto dto = new AssignmentResponseDto();
-                dto.setId(a.getId());
-                dto.setAssignmentName(a.getAssignmentName());
-                dto.setTimeDuration(a.getTime_duration());
-                dto.setStartTime(a.getStartTime());
-                dto.setEndTime(a.getEndTime());
-                dto.setIsMcq(a.getIsMcq());
-                dto.setTopicId(a.getTopic().getId());
-                dto.setTopicTitle(a.getTopic().getTitle());
-
+                AssignmentResponseDto dto = AssignmentResponseDto.builder()
+                        .id(a.getId())
+                        .assignmentName(a.getAssignmentName())
+                        .timeDuration(a.getTime_duration())
+                        .startTime(a.getStartTime())
+                        .endTime(a.getEndTime())
+                        .isMcq(a.getIsMcq())
+                        .topicId(a.getTopic() != null ? a.getTopic().getId() : null)
+                        .topicTitle(a.getTopic() != null ? a.getTopic().getTitle() : null)
+                        .build();
                 List<AssignmentDocument> docs = assignmentDocumentRepository.findAssignmentDocumentByAssignment(a);
                 List<DocumentDto> documentDtos = new ArrayList<>();
                 docs.forEach(ad -> {

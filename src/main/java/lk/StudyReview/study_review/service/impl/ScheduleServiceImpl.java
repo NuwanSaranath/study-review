@@ -1,17 +1,15 @@
 package lk.StudyReview.study_review.service.impl;
 
 import lk.StudyReview.study_review.dto.TopicDetailsDto;
-import lk.StudyReview.study_review.dto.common.ScheduleDto;
+import lk.StudyReview.study_review.dto.response.ScheduleDto;
 import lk.StudyReview.study_review.dto.response.PageableScheduleResponse;
 import lk.StudyReview.study_review.exception.CommonException;
 import lk.StudyReview.study_review.model.Schedule;
-import lk.StudyReview.study_review.model.Topic;
 import lk.StudyReview.study_review.model.User;
 import lk.StudyReview.study_review.repository.ScheduleRepository;
 import lk.StudyReview.study_review.repository.UserRepository;
 import lk.StudyReview.study_review.service.ScheduleService;
 import lk.StudyReview.study_review.utils.convertor.ScheduleConverter;
-import lk.StudyReview.study_review.utils.convertor.TopicConverter;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,10 +18,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor

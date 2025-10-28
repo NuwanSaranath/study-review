@@ -1,6 +1,7 @@
 package lk.StudyReview.study_review.model;
 
 import jakarta.persistence.*;
+import lk.StudyReview.study_review.model.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
