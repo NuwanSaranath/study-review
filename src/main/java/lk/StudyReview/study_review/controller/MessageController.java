@@ -1,7 +1,7 @@
 package lk.StudyReview.study_review.controller;
 
 import jakarta.validation.constraints.Null;
-import lk.StudyReview.study_review.dto.request.APIResponse;
+import lk.StudyReview.study_review.dto.common.APIResponse;
 import lk.StudyReview.study_review.dto.request.MessageDetailsDto;
 import lk.StudyReview.study_review.dto.response.MessageResponseDto;
 import lk.StudyReview.study_review.service.MessageService;

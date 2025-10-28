@@ -1,4 +1,4 @@
-package lk.StudyReview.study_review.dto.request;
+package lk.StudyReview.study_review.dto.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
