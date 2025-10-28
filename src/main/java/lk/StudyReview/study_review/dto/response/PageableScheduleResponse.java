@@ -1,7 +1,6 @@
 package lk.StudyReview.study_review.dto.response;
 
-import lk.StudyReview.study_review.dto.common.ScheduleDto;
-import lk.StudyReview.study_review.model.Schedule;
+import lk.StudyReview.study_review.dto.request.ScheduleDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

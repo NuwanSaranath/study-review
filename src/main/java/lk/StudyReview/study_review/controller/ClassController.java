@@ -1,14 +1,11 @@
 package lk.StudyReview.study_review.controller;
 
 import jakarta.validation.constraints.Null;
-import lk.StudyReview.study_review.dto.common.APIResponse;
-import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
-import lk.StudyReview.study_review.dto.common.ClassDetailsDto;
-import lk.StudyReview.study_review.model.ClassDetails;
+import lk.StudyReview.study_review.dto.request.APIResponse;
+import lk.StudyReview.study_review.dto.request.ClassDetailsDto;
 import lk.StudyReview.study_review.service.ClassDetailsService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

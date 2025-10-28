@@ -1,8 +1,8 @@
 package lk.StudyReview.study_review.service;
 
-import lk.StudyReview.study_review.dto.common.Auth.AuthRequestDto;
-import lk.StudyReview.study_review.dto.common.Auth.TokenResponse;
-import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
+import lk.StudyReview.study_review.dto.request.Auth.AuthRequestDto;
+import lk.StudyReview.study_review.dto.request.Auth.TokenResponse;
+import lk.StudyReview.study_review.dto.request.Auth.UserDetailsDto;
 
 public interface AuthService {
     void signUp(UserDetailsDto userDetailsDto);

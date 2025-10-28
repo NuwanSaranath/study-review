@@ -1,7 +1,7 @@
 package lk.StudyReview.study_review.service.impl;
 
-import lk.StudyReview.study_review.dto.common.McqDetailsDto;
-import lk.StudyReview.study_review.dto.common.McqResponseDto;
+import lk.StudyReview.study_review.dto.request.McqDetailsDto;
+import lk.StudyReview.study_review.dto.request.McqResponseDto;
 import lk.StudyReview.study_review.exception.CommonException;
 import lk.StudyReview.study_review.model.Assignment;
 import lk.StudyReview.study_review.model.Mcq;
@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @Service

@@ -1,4 +1,4 @@
-package lk.StudyReview.study_review.dto.common.Auth;
+package lk.StudyReview.study_review.dto.request.Auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;

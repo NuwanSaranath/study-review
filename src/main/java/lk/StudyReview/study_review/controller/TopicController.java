@@ -2,9 +2,8 @@ package lk.StudyReview.study_review.controller;
 
 import jakarta.validation.constraints.Null;
 import lk.StudyReview.study_review.dto.TopicDetailsDto;
-import lk.StudyReview.study_review.dto.common.APIResponse;
-import lk.StudyReview.study_review.dto.common.TopicResponseDto;
-import lk.StudyReview.study_review.model.Topic;
+import lk.StudyReview.study_review.dto.request.APIResponse;
+import lk.StudyReview.study_review.dto.request.TopicResponseDto;
 import lk.StudyReview.study_review.service.TopicService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;

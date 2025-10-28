@@ -1,6 +1,6 @@
 package lk.StudyReview.study_review.exception;
 
-import lk.StudyReview.study_review.dto.common.APIResponse;
+import lk.StudyReview.study_review.dto.request.APIResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

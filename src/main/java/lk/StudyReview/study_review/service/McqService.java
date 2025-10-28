@@ -1,7 +1,7 @@
 package lk.StudyReview.study_review.service;
 
-import lk.StudyReview.study_review.dto.common.McqDetailsDto;
-import lk.StudyReview.study_review.dto.common.McqResponseDto;
+import lk.StudyReview.study_review.dto.request.McqDetailsDto;
+import lk.StudyReview.study_review.dto.request.McqResponseDto;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package lk.StudyReview.study_review.service;
 
-import lk.StudyReview.study_review.dto.common.AssignmentDetailsDto;
-import lk.StudyReview.study_review.dto.common.AssignmentResponseDto;
+import lk.StudyReview.study_review.dto.request.AssignmentDetailsDto;
+import lk.StudyReview.study_review.dto.request.AssignmentResponseDto;
 
 import java.util.List;
 

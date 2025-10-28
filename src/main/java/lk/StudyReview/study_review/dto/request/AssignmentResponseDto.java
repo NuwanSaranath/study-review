@@ -1,6 +1,5 @@
-package lk.StudyReview.study_review.dto.common;
+package lk.StudyReview.study_review.dto.request;
 
-import lk.StudyReview.study_review.model.Mcq;
 import lombok.Getter;
 import lombok.Setter;
 

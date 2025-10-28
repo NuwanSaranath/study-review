@@ -1,4 +1,4 @@
-package lk.StudyReview.study_review.model;
+package lk.StudyReview.study_review.model.common;
 
 import jakarta.persistence.Column;
 import org.hibernate.annotations.CreationTimestamp;
