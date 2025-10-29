@@ -1,6 +1,7 @@
 package lk.StudyReview.study_review.service.impl;
 
 import lk.StudyReview.study_review.dto.request.AssignmentDetailsDto;
+import lk.StudyReview.study_review.dto.request.AssignmentRequestDto;
 import lk.StudyReview.study_review.dto.response.AssignmentResponseDto;
 import lk.StudyReview.study_review.dto.response.DocumentDto;
 import lk.StudyReview.study_review.dto.response.McqDto;
@@ -157,5 +158,10 @@ public class AssignmentServiceImpl implements AssignmentService {
             throw new CommonException(ResponseCode.INVALID_REQUEST);
         }
         assignmentRepository.delete(assignmentOptional.get());
+    }
+
+    @Override
+    public void submitAssignment(Long studentId, Long assignmentId, AssignmentRequestDto assignmentRequestDto) {
+
     }
 }

@@ -1,6 +1,7 @@
 package lk.StudyReview.study_review.service;
 
 import lk.StudyReview.study_review.dto.request.AssignmentDetailsDto;
+import lk.StudyReview.study_review.dto.request.AssignmentRequestDto;
 import lk.StudyReview.study_review.dto.response.AssignmentResponseDto;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface AssignmentService {
     List<AssignmentResponseDto> getAllAssignments(Long classId);
     void updateAssignment(Long id, AssignmentDetailsDto assignmentDetailsDto);
     void deleteAssignment(Long id);
+    void submitAssignment(Long studentId, Long assignmentId, AssignmentRequestDto assignmentRequestDto);
 }

@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Null;
 import lk.StudyReview.study_review.dto.common.APIResponse;
 import lk.StudyReview.study_review.dto.request.AssignmentDetailsDto;
+import lk.StudyReview.study_review.dto.request.AssignmentRequestDto;
 import lk.StudyReview.study_review.dto.response.AssignmentResponseDto;
 import lk.StudyReview.study_review.service.AssignmentService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
@@ -17,7 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/assignment")
-public class AssignmentControl {
+public class AssignmentController {
     private final AssignmentService assignmentService;
 
     @PostMapping
@@ -50,6 +51,12 @@ public class AssignmentControl {
     @DeleteMapping("/{id}")
     public ResponseEntity<APIResponse<Null>> deleteAssignment(@PathVariable Long id) {
         assignmentService.deleteAssignment(id);
+        return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
+    }
+    @PreAuthorize("hasRole('STUDENT')")
+    @PostMapping()
+    public ResponseEntity<APIResponse<Null>> submitAssignment(@PathVariable Long studentId, @PathVariable Long assignmentId, @Valid @RequestBody AssignmentRequestDto assignmentRequestDto) {
+        assignmentService.submitAssignment(studentId,assignmentId,assignmentRequestDto);
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
     }
 }
