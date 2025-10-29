@@ -2,18 +2,18 @@ package lk.StudyReview.study_review.service;
 
 import lk.StudyReview.study_review.dto.request.MessageDetailsDto;
 import lk.StudyReview.study_review.dto.response.MessageResponseDto;
+import lk.StudyReview.study_review.dto.response.MessageUserDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface MessageService {
 
     void sendMessage(MessageDetailsDto messageDetailsDto);
 
-    MessageResponseDto getMessageById(Long id);
+    ArrayList<MessageUserDto> getAllMessageUsers(Long id);
 
-    List<MessageResponseDto> getAllMessages(Long myUserId,Long otherUserId);
+    List<MessageResponseDto> getAllMessages(Long currentUserId,Long partnerUserId);
 
-    void updateMessage(Long id, MessageDetailsDto messageDetailsDto);
 
-    void deleteMessage(Long id);
 }
