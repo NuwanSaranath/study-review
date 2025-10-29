@@ -10,6 +10,7 @@ public enum ResponseCode {
     USER_DOES_NOT_REGISTERED(1003, "User is not registered."),
     SUCCESS(1004, "Success."),
     CLASS_DOES_NOT_EXIST(1005, "Class does not exist."),
+    MESSAGE_DOES_NOT_EXIST(1006, "Message does not exist."),
 
     ;
 

@@ -12,12 +12,12 @@ public class Mcq {
     @Id
     private Long id;
     @ManyToOne
-    @Column(name = "assignment_id")
+    @JoinColumn(name = "assignment_id")
     private Assignment assignment;
     @Column(name = "question")
     private String question;
     @OneToOne
-    @Column(name = "correct_answer")
+    @JoinColumn(name = "correct_answer")
     private McqOptions correctAnswer;
 
 

@@ -1,6 +1,7 @@
 package lk.StudyReview.study_review.dto.response;
 
-import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
+
+import lk.StudyReview.study_review.dto.request.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.dto.request.TopicDetailsDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;

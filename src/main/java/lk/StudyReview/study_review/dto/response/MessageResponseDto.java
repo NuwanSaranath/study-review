@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -12,8 +13,10 @@ import java.time.LocalDateTime;
 public class MessageResponseDto {
 
     private Long id;
-    private String senderName;
-    private String receiverName;
+    private String currentUserName;
+    private Long currentUserId;
+    private String partnerUserName;
+    private Long partnerUserId;
     private String content;
-    private LocalDateTime createdAt;
+    private Date createdAt;
 }

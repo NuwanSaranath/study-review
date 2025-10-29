@@ -1,5 +1,6 @@
 package lk.StudyReview.study_review.controller;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Null;
 import lk.StudyReview.study_review.dto.common.APIResponse;
 import lk.StudyReview.study_review.dto.request.MessageDetailsDto;
@@ -19,7 +20,7 @@ public class MessageController {
     private final MessageService messageService;
 
     @PostMapping
-    public ResponseEntity<APIResponse<Null>> createMessage(@RequestBody MessageDetailsDto messageDetailsDto) {
+    public ResponseEntity<APIResponse<Null>> createMessage(@Valid  @RequestBody MessageDetailsDto messageDetailsDto) {
         messageService.sendMessage(messageDetailsDto);
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
     }
@@ -31,8 +32,8 @@ public class MessageController {
     }
 
     @GetMapping
-    public ResponseEntity<APIResponse<List<MessageResponseDto>>> getAllMessages() {
-        List<MessageResponseDto> allMessages = messageService.getAllMessages();
+    public ResponseEntity<APIResponse<List<MessageResponseDto>>> getAllMessages(@PathVariable Long myUserId ,@PathVariable Long otherUserId) {
+        List<MessageResponseDto> allMessages = messageService.getAllMessages(myUserId,otherUserId);
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS, allMessages));
     }
 

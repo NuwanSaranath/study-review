@@ -14,7 +14,7 @@ public class TopicDocument extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @Column(name = "document_id")
+    @JoinColumn(name = "document_id")
     private Document document;
     @ManyToOne
     @JoinColumn(name = "lesson_id",nullable = false,referencedColumnName = "id")

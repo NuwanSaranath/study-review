@@ -1,6 +1,7 @@
 package lk.StudyReview.study_review.utils.convertor;
 
-import lk.StudyReview.study_review.dto.TopicDetailsDto;
+
+import lk.StudyReview.study_review.dto.request.TopicDetailsDto;
 import lk.StudyReview.study_review.dto.response.ScheduleDto;
 import lk.StudyReview.study_review.model.Schedule;
 import lk.StudyReview.study_review.model.Topic;
