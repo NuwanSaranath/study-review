@@ -1,7 +1,8 @@
 package lk.StudyReview.study_review.service.impl;
 
 import jakarta.transaction.Transactional;
-import lk.StudyReview.study_review.dto.TopicDetailsDto;
+
+import lk.StudyReview.study_review.dto.request.TopicDetailsDto;
 import lk.StudyReview.study_review.dto.response.DocumentDto;
 import lk.StudyReview.study_review.dto.response.TopicResponseDto;
 import lk.StudyReview.study_review.exception.CommonException;

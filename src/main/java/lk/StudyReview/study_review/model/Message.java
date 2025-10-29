@@ -25,5 +25,7 @@ public class Message {
     private String message;
     @Column(name="date")
     private Date date;
+    @Column(name="is_read")
+    private Boolean isRead;
 
 }

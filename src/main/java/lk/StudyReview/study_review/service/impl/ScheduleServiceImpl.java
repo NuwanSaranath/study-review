@@ -1,6 +1,6 @@
 package lk.StudyReview.study_review.service.impl;
 
-import lk.StudyReview.study_review.dto.TopicDetailsDto;
+
 import lk.StudyReview.study_review.dto.response.ScheduleDto;
 import lk.StudyReview.study_review.dto.response.PageableScheduleResponse;
 import lk.StudyReview.study_review.exception.CommonException;

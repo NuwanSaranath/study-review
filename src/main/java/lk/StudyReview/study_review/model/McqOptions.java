@@ -12,7 +12,7 @@ public class McqOptions {
     @Id
     private Long id;
     @ManyToOne
-    @Column(name = "mcq_id")
+    @JoinColumn(name = "mcq_id")
     private Mcq mcq;
     @Column(name = "mcq_option")
     private String mcqOption;

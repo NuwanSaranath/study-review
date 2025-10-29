@@ -11,7 +11,7 @@ public interface MessageService {
 
     MessageResponseDto getMessageById(Long id);
 
-    List<MessageResponseDto> getAllMessages();
+    List<MessageResponseDto> getAllMessages(Long myUserId,Long otherUserId);
 
     void updateMessage(Long id, MessageDetailsDto messageDetailsDto);
 
