@@ -31,6 +31,8 @@ public class User implements UserDetails {
     private String email;
     @Column(name = "mobile_number")
     private String mobileNumber;
+    @Column(name = "picture")
+    private byte[] picture;
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;

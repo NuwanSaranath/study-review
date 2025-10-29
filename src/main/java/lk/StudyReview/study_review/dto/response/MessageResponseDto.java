@@ -13,10 +13,10 @@ import java.util.Date;
 public class MessageResponseDto {
 
     private Long id;
-    private String currentUserName;
-    private Long currentUserId;
-    private String partnerUserName;
-    private Long partnerUserId;
+    private String fromUserName;
+    private Long fromUserId;
+    private String toUserName;
+    private Long toUserId;
     private String content;
     private Date createdAt;
 }
