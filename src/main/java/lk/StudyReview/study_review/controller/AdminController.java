@@ -9,10 +9,7 @@ import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,6 +35,12 @@ public class AdminController {
                     new APIResponse<>(ResponseCode.INTERNAL_ERROR);
             return ResponseEntity.status(ResponseCode.INTERNAL_ERROR.getCode()).body(errorResponse);
         }
+    }
+
+    @PostMapping
+    public ResponseEntity<APIResponse<UserDetailsResponseDto>> createUser(UserDetailsDto userDetailsDto) {
+        UserDetailsResponseDto responseDto = adminService.createUser(userDetailsDto);
+        return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS,responseDto));
     }
 
 }

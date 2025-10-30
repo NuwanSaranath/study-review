@@ -13,4 +13,5 @@ import java.util.List;
 public interface AdminService {
 
     ResponseEntity<APIResponse<UserDetailsResponseDto>> getAllUsersByRole(String role, int page, int size);
+    UserDetailsResponseDto createUser(UserDetailsDto userDetailsDto);
 }

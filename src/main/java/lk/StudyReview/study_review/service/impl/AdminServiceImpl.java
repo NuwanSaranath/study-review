@@ -1,6 +1,7 @@
 package lk.StudyReview.study_review.service.impl;
 
 import lk.StudyReview.study_review.dto.common.APIResponse;
+import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.dto.common.UserDetailsResponseDto;
 import lk.StudyReview.study_review.model.common.User;
 import lk.StudyReview.study_review.repository.UserRepository;
@@ -46,6 +47,20 @@ public class AdminServiceImpl implements AdminService {
 
 
         return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public UserDetailsResponseDto createUser(UserDetailsDto userDetailsDto) {
+        User user = new User();
+        user.setEmail(userDetailsDto.getEmail());
+        user.setPassword(userDetailsDto.getPassword());
+        user.setFirstName(userDetailsDto.getFirstName());
+        user.setLastName(userDetailsDto.getLastName());
+        user.setRole(Role.valueOf(String.valueOf(userDetailsDto.getRole())));
+        user.setMobileNumber(String.valueOf(userDetailsDto.getMobileNumber()));
+        user.setUserName(userDetailsDto.getUserName());
+        User savedUser = userRepository.save(user);
+        return mapToResponse(savedUser);
     }
 
     public UserDetailsResponseDto mapToResponse(User user) {
