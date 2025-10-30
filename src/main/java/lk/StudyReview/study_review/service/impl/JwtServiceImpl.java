@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
+import lk.StudyReview.study_review.model.User;
 import lk.StudyReview.study_review.service.JwtService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,12 +30,16 @@ public class JwtServiceImpl implements JwtService {
     }
     public String generateToken(UserDetails user){
         Map<String, Object> claims = new HashMap<>();
+        if (user instanceof User customUser) {
+            claims.put("userId", customUser.getId());
+            claims.put("email", customUser.getEmail());
+        }
         claims.put("ROLES", getRoles(user));
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationTimeInMs))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationTimeInMs))
                 .signWith(key)
                 .compact();
     }

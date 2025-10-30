@@ -25,7 +25,11 @@ public class ClassDetails extends BaseEntity {
     @Column(name = "dp")
     private byte[] dp;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "class_student_details")
+    @JoinTable(
+            name = "class_student_details",
+            joinColumns = @JoinColumn(name = "class_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private List<User> students;
 
 }

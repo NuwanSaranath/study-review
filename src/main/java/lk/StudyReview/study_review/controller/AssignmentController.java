@@ -53,10 +53,10 @@ public class AssignmentController {
         assignmentService.deleteAssignment(id);
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
     }
-    @PreAuthorize("hasRole('STUDENT')")
-    @PostMapping()
-    public ResponseEntity<APIResponse<Null>> submitAssignment(@PathVariable Long studentId, @PathVariable Long assignmentId, @Valid @RequestBody AssignmentRequestDto assignmentRequestDto) {
-        assignmentService.submitAssignment(studentId,assignmentId,assignmentRequestDto);
-        return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
-    }
+//    @PreAuthorize("hasRole('STUDENT')")
+//    @PostMapping()
+//    public ResponseEntity<APIResponse<Null>> submitAssignment(@PathVariable Long studentId, @PathVariable Long assignmentId, @Valid @RequestBody AssignmentRequestDto assignmentRequestDto) {
+//        assignmentService.submitAssignment(studentId,assignmentId,assignmentRequestDto);
+//        return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
+//    }
 }
