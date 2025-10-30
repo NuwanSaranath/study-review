@@ -12,7 +12,9 @@ import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -26,7 +28,7 @@ public class ClassDetailsServiceImpl implements ClassDetailsService {
     @Override
     public List<ClassResponseDto> getAllClasses(Long teacherId) {
         Optional<User> userOptional = userRepository.findById(teacherId);
-        if(userOptional.isPresent()) {
+        if(userOptional.isEmpty()) {
             log.error("Invalid user id.");
             throw new CommonException(ResponseCode.INVALID_REQUEST);
         }
@@ -57,18 +59,29 @@ public class ClassDetailsServiceImpl implements ClassDetailsService {
                 .orElseThrow(() -> new CommonException(ResponseCode.CLASS_DOES_NOT_EXIST));
     }
     @Override
-    public void createClass(ClassDetailsDto classDetailsDto) {
-        Optional<User> teacherOptional = userRepository.findById(classDetailsDto.getId());
-        if(teacherOptional.isEmpty()){
-            log.error("Invalid teacher.");
+    public void createClass(String className, String description, Long teacherId, MultipartFile dp) {
+        Optional<User> teacherOptional = userRepository.findById(teacherId);
+        if (teacherOptional.isEmpty()) {
+            log.error("Invalid teacher ID: {}", teacherId);
             throw new CommonException(ResponseCode.INVALID_REQUEST);
         }
+
         ClassDetails classDetails = new ClassDetails();
-        classDetails.setClassName(classDetailsDto.getClassName());
-        classDetails.setDescription(classDetailsDto.getDescription());
-        classDetails.setDp(classDetailsDto.getDp());
+        classDetails.setClassName(className);
+        classDetails.setDescription(description);
         classDetails.setTeacher(teacherOptional.get());
+
+        try {
+            if (dp != null && !dp.isEmpty()) {
+                classDetails.setDp(dp.getBytes());
+            }
+        } catch (IOException e) {
+            log.error("Error reading uploaded image", e);
+            throw new CommonException(ResponseCode.INVALID_REQUEST);
+        }
+
         classDetailsRepository.save(classDetails);
+        log.info("Class '{}' created successfully by teacher {}", className, teacherId);
     }
     @Override
     public void updateClass(Long id, ClassDetailsDto classDetailsDto) {

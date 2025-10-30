@@ -8,9 +8,11 @@ import lk.StudyReview.study_review.dto.response.ClassResponseDto;
 import lk.StudyReview.study_review.service.ClassDetailsService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 @CrossOrigin
@@ -32,10 +34,15 @@ public class ClassController {
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS,classDetailsService.getClassById(id)));
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasRole('TEACHER')")
-    public ResponseEntity<APIResponse<Null>> createClass(@Valid  @RequestBody ClassDetailsDto classDetailsDto) {
-        classDetailsService.createClass(classDetailsDto);
+    public ResponseEntity<APIResponse<Void>> createClass(
+            @RequestParam("className") String className,
+            @RequestParam("description") String description,
+            @RequestParam("teacherId") Long teacherId,
+            @RequestParam(value = "dp", required = false) MultipartFile dp) {
+
+        classDetailsService.createClass(className, description, teacherId, dp);
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS));
     }
 
