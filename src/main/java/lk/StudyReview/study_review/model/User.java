@@ -1,4 +1,4 @@
-package lk.StudyReview.study_review.model.common;
+package lk.StudyReview.study_review.model;
 
 import jakarta.persistence.*;
 import lk.StudyReview.study_review.utils.enums.Role;
@@ -31,9 +31,13 @@ public class User implements UserDetails {
     private String email;
     @Column(name = "mobile_number")
     private String mobileNumber;
+    @Column(name = "picture")
+    private byte[] picture;
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+    @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
+    private List<ClassDetails> classDetailsList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
