@@ -1,6 +1,7 @@
 package lk.StudyReview.study_review.service.impl;
 
 import lk.StudyReview.study_review.dto.request.ClassDetailsDto;
+import lk.StudyReview.study_review.dto.response.ClassResponseDto;
 import lk.StudyReview.study_review.exception.CommonException;
 import lk.StudyReview.study_review.model.ClassDetails;
 import lk.StudyReview.study_review.model.User;
@@ -23,15 +24,23 @@ public class ClassDetailsServiceImpl implements ClassDetailsService {
     private final ClassDetailsRepository classDetailsRepository;
     private final UserRepository userRepository;
     @Override
-    public List<ClassDetailsDto> getAllClasses() {
-        return classDetailsRepository.findAll()
+    public List<ClassResponseDto> getAllClasses(Long teacherId) {
+        Optional<User> userOptional = userRepository.findById(teacherId);
+        if(userOptional.isPresent()) {
+            log.error("Invalid user id.");
+            throw new CommonException(ResponseCode.INVALID_REQUEST);
+        }
+        List<ClassDetails> classDetailsList = classDetailsRepository.findAllByTeacher(userOptional.get());
+
+        return classDetailsList
                 .stream()
-                .map(classDetails -> new ClassDetailsDto(
+                .map(classDetails -> new ClassResponseDto(
                         classDetails.getId(),
                         classDetails.getClassName(),
                         classDetails.getDescription(),
                         classDetails.getTeacher().getId(),
-                        classDetails.getDp()
+                        classDetails.getDp(),
+                        classDetails.getStudents().size()
                 ))
                 .collect(Collectors.toList());
     }

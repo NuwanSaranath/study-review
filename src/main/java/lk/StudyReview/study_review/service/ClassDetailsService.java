@@ -1,11 +1,12 @@
 package lk.StudyReview.study_review.service;
 
 import lk.StudyReview.study_review.dto.request.ClassDetailsDto;
+import lk.StudyReview.study_review.dto.response.ClassResponseDto;
 
 import java.util.List;
 
 public interface ClassDetailsService {
-    List<ClassDetailsDto> getAllClasses();
+    List<ClassResponseDto> getAllClasses(Long userId);
 
     ClassDetailsDto getClassById(Long id);
 

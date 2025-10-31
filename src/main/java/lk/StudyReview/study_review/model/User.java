@@ -36,8 +36,7 @@ public class User implements UserDetails {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "class_student_details")
+    @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
     private List<ClassDetails> classDetailsList;
 
     @Override
