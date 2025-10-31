@@ -5,15 +5,21 @@ import lk.StudyReview.study_review.dto.request.Auth.TokenResponse;
 import lk.StudyReview.study_review.dto.request.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.exception.CommonException;
 //import lk.StudyReview.study_review.model.common.Auth.CustomUserDetails;
+import lk.StudyReview.study_review.model.EmailSchedule;
 import lk.StudyReview.study_review.model.User;
+import lk.StudyReview.study_review.repository.EmailRepository;
 import lk.StudyReview.study_review.repository.UserRepository;
 import lk.StudyReview.study_review.service.AuthService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Slf4j
@@ -23,6 +29,11 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final JwtServiceImpl jwtService;
+    private final EmailRepository emailRepository;
+
+    private final EmailService emailService;
+    @Autowired
+    private TemplateEngine templateEngine;
     @Override
     public void signUp(UserDetailsDto userDetailsDto) {
         Optional<User> userOptional = userRepository.findByUserName(userDetailsDto.getUserName().trim());
@@ -38,7 +49,23 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(userDetailsDto.getEmail().trim().toLowerCase());
         user.setRole(userDetailsDto.getRole());
         user.setPassword(passwordEncoder.encode(userDetailsDto.getPassword()));
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        Context context = new Context();
+        context.setVariable("firstName", userDetailsDto.getFirstName());
+        context.setVariable("lastName", userDetailsDto.getLastName());
+        context.setVariable("role", userDetailsDto.getRole());
+        context.setVariable("subject", "Welcome to StudyReview!");
+        context.setVariable("dashboardLink", "http://studyreview.com/dashboard");
+
+        String htmlContent = templateEngine.process("email-template", context);
+        EmailSchedule emailSchedule  = new EmailSchedule();
+        emailSchedule.setSubject("Welcome to StudyReview!");
+        emailSchedule.setTo(savedUser.getEmail());
+        emailSchedule.setSentDate(LocalDateTime.now());
+        emailSchedule.setDone(false);
+        emailSchedule.setText(htmlContent);
+        emailRepository.save(emailSchedule);
     }
 
     @Override

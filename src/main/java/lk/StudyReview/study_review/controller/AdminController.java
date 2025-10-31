@@ -1,8 +1,8 @@
 package lk.StudyReview.study_review.controller;
 
 import lk.StudyReview.study_review.dto.common.APIResponse;
-import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.dto.common.UserDetailsResponseDto;
+import lk.StudyReview.study_review.dto.request.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.service.AdminService;
 import lk.StudyReview.study_review.service.UserService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
@@ -32,7 +32,6 @@ public ResponseEntity<APIResponse<Page<UserDetailsResponseDto>>> getAllUsersByRo
         @RequestParam String role,
         @PageableDefault(size = 10, page = 0, sort = "id") Pageable pageable
 ) {
-    System.out.println("sdsdasdasd");
 
         Page<UserDetailsResponseDto> users = adminService.getAllUsersByRole(role, pageable);
         APIResponse<Page<UserDetailsResponseDto>> response =
