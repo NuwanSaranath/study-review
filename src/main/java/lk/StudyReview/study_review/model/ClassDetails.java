@@ -22,7 +22,8 @@ public class ClassDetails extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "teacher")
     private User teacher;
-    @Column(name = "dp")
+    @Lob
+    @Column(name = "dp",columnDefinition = "LONGBLOB")
     private byte[] dp;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
