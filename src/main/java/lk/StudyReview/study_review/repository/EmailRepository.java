@@ -1,7 +1,7 @@
 package lk.StudyReview.study_review.repository;
 
+import lk.StudyReview.study_review.model.EmailSchedule;
 import lk.StudyReview.study_review.model.User;
-
 import lk.StudyReview.study_review.utils.enums.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,9 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
-    Optional<User> findByUserName(String userName);
-    Page<User> findAllByRole(Role role, Pageable pageable);
+public interface EmailRepository extends JpaRepository<EmailSchedule,Long> {
+    List<EmailSchedule> findByDone(boolean done);
 }

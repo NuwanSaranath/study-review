@@ -1,13 +1,13 @@
 package lk.StudyReview.study_review.controller;
 
 import lk.StudyReview.study_review.dto.common.APIResponse;
-import lk.StudyReview.study_review.dto.request.Auth.UserDetailsDto;
+import lk.StudyReview.study_review.dto.common.UserDetailsResponseDto;
 import lk.StudyReview.study_review.service.UserService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,9 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
     @GetMapping
-    @PreAuthorize("hasAnyRole('TEACHER','STUDENT','ADMIN')")
-    public ResponseEntity<APIResponse<UserDetailsDto>> getUserDetails(@RequestParam("userName") String userName){
-        UserDetailsDto userDetails = userService.getUserDetails(userName);
+    public ResponseEntity<APIResponse<UserDetailsResponseDto>> getUserDetails(@RequestParam("userName") String userName){
+        UserDetailsResponseDto userDetails = userService.getUserDetails(userName);
+        return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS,userDetails));
+
+    }
+    @PatchMapping
+    public ResponseEntity<APIResponse<UserDetailsResponseDto>> changeUserRole(@RequestParam("userName")  String userName ,@RequestParam("userRole") String userRole){
+        UserDetailsResponseDto userDetails = userService.getUserDetails(userName);
         return ResponseEntity.ok(new APIResponse<>(ResponseCode.SUCCESS,userDetails));
 
     }
