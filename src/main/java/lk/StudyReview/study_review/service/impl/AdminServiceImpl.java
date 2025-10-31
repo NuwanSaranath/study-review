@@ -11,6 +11,7 @@ import lk.StudyReview.study_review.utils.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -24,29 +25,16 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
 
     @Override
-    public ResponseEntity<APIResponse<UserDetailsResponseDto>> getAllUsersByRole(String role, int page, int size) {
-
-        PageRequest pageable = PageRequest.of(page, size);
+    public Page<UserDetailsResponseDto> getAllUsersByRole(String role, Pageable pageable) {
+        System.out.println("a");
 
         Page<User> userPage = userRepository.findAllByRole(Role.valueOf(role), pageable);
-
-        List<UserDetailsResponseDto> userDtos = userPage.getContent()
-                .stream()
-                .map(this::mapToResponse)
-                .collect(Collectors.toList());
-
-        PaginatedResponse<UserDetailsResponseDto> paginatedBody = new PaginatedResponse<>(
-                userDtos,
-                userPage.getTotalElements(),
-                userPage.getTotalPages(),
-                userPage.getNumber()
-        );
-
-        APIResponse<UserDetailsResponseDto> response = new APIResponse<>(ResponseCode.SUCCESS);
-        response.setBody((UserDetailsResponseDto) (Object) paginatedBody);
+        System.out.println("b");
+        return userPage.map(this::mapToResponse);
 
 
-        return ResponseEntity.ok(response);
+
+
     }
 
     @Override
@@ -76,12 +64,4 @@ public class AdminServiceImpl implements AdminService {
         return dto;
     }
 
-    @lombok.Data
-    @lombok.AllArgsConstructor
-    static class PaginatedResponse<T> {
-        private List<T> content;
-        private long totalElements;
-        private int totalPages;
-        private int currentPage;
-    }
 }

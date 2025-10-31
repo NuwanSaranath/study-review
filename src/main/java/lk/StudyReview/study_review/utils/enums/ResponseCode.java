@@ -9,7 +9,7 @@ public enum ResponseCode {
     INVALID_USERNAME_OR_PASSWORD(1002, "Invalid user name or password."),
     USER_DOES_NOT_REGISTERED(1003, "User is not registered."),
     SUCCESS(1004, "Success."),
-    INTERNAL_ERROR(1005, "Internal Server Error.");
+    INTERNAL_ERROR(105, "Internal Server Error.");
 
 
     private final int code;
