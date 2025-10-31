@@ -53,6 +53,7 @@ public class AuthServiceImpl implements AuthService {
             String jwt = jwtService.generateToken(user);
             TokenResponse tokenResponse = new TokenResponse();
             tokenResponse.setTokenType("Bearer");
+            log.info("token {}",jwt);
             tokenResponse.setToken(jwt);
             tokenResponse.setExpiresIn(jwtService.getBodyFromToken(jwt).getExpiration());
             return tokenResponse;

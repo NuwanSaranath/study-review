@@ -31,7 +31,8 @@ public class SecurityConfig {
                 .exceptionHandling(ex->ex.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(sm-> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth-> auth
-                                .requestMatchers("auth/sign-in","auth/sign-up").permitAll()
+                                .requestMatchers("/api/v1/auth/**","/public/**").permitAll()
+                                .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
