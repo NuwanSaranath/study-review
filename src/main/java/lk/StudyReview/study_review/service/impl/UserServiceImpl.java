@@ -1,8 +1,7 @@
 package lk.StudyReview.study_review.service.impl;
 
-import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.dto.common.UserDetailsResponseDto;
-import lk.StudyReview.study_review.model.common.User;
+import lk.StudyReview.study_review.model.User;
 import lk.StudyReview.study_review.repository.UserRepository;
 import lk.StudyReview.study_review.service.UserService;
 import lk.StudyReview.study_review.utils.enums.Role;

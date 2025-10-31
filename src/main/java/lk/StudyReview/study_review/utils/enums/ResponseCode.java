@@ -9,8 +9,10 @@ public enum ResponseCode {
     INVALID_USERNAME_OR_PASSWORD(1002, "Invalid user name or password."),
     USER_DOES_NOT_REGISTERED(1003, "User is not registered."),
     SUCCESS(1004, "Success."),
-    INTERNAL_ERROR(105, "Internal Server Error.");
+    CLASS_DOES_NOT_EXIST(1005, "Class does not exist."),
+    MESSAGE_DOES_NOT_EXIST(1006, "Message does not exist."),
 
+    ;
 
     private final int code;
     private final String description;

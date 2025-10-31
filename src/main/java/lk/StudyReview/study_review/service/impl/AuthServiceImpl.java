@@ -1,11 +1,11 @@
 package lk.StudyReview.study_review.service.impl;
 
-import lk.StudyReview.study_review.dto.common.Auth.AuthRequestDto;
-import lk.StudyReview.study_review.dto.common.Auth.TokenResponse;
-import lk.StudyReview.study_review.dto.common.Auth.UserDetailsDto;
+import lk.StudyReview.study_review.dto.request.Auth.AuthRequestDto;
+import lk.StudyReview.study_review.dto.request.Auth.TokenResponse;
+import lk.StudyReview.study_review.dto.request.Auth.UserDetailsDto;
 import lk.StudyReview.study_review.exception.CommonException;
 //import lk.StudyReview.study_review.model.common.Auth.CustomUserDetails;
-import lk.StudyReview.study_review.model.common.User;
+import lk.StudyReview.study_review.model.User;
 import lk.StudyReview.study_review.repository.UserRepository;
 import lk.StudyReview.study_review.service.AuthService;
 import lk.StudyReview.study_review.utils.enums.ResponseCode;
@@ -53,6 +53,7 @@ public class AuthServiceImpl implements AuthService {
             String jwt = jwtService.generateToken(user);
             TokenResponse tokenResponse = new TokenResponse();
             tokenResponse.setTokenType("Bearer");
+            log.info("token {}",jwt);
             tokenResponse.setToken(jwt);
             tokenResponse.setExpiresIn(jwtService.getBodyFromToken(jwt).getExpiration());
             return tokenResponse;

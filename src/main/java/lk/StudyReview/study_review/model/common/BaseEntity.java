@@ -11,5 +11,9 @@ public class BaseEntity {
     private Date createdTimestamp;
     @Column(name = "updated_timestamp")
     private Date updatedTimestamp;
+    @Column(name = "created_by")
+    private String createdBy;
+    @Column(name = "updated_by")
+    private String updatedBy;
 
 }

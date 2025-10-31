@@ -1,6 +1,6 @@
 package lk.StudyReview.study_review.service.impl;
 
-import lk.StudyReview.study_review.model.common.User;
+import lk.StudyReview.study_review.model.User;
 import lk.StudyReview.study_review.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
